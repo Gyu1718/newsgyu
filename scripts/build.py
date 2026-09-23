@@ -17,7 +17,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 DOCS = ROOT / "docs"
-SITE_PATH = "/newsforgyu/"
+SITE_PATH = "/newsgyu/"
 WEEKDAYS = "월화수목금토일"
 STATUSES = {"진행 중", "소강", "종결"}
 

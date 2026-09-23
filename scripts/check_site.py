@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1] / "docs"
-BASE = "/newsforgyu/"
+BASE = "/newsgyu/"
 
 
 class Links(HTMLParser):

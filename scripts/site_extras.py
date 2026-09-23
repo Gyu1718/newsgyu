@@ -10,7 +10,7 @@ from xml.sax.saxutils import escape as xml_escape
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
-SITE_URL = "https://gyu1718.github.io/newsforgyu/"
+SITE_URL = "https://gyu1718.github.io/newsgyu/"
 KST = timezone(timedelta(hours=9))
 
 

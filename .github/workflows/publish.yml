@@ -1,0 +1,53 @@
+name: Publish briefing site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "assets/**"
+      - "scripts/**"
+      - ".github/workflows/publish.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: briefing-site-build
+  cancel-in-progress: true
+
+jobs:
+  build-and-commit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Generate site
+        shell: bash
+        run: |
+          rm -rf docs/briefings docs/threads
+          python3 scripts/build.py
+          python3 scripts/site_extras.py
+
+      - name: Validate generated site
+        run: |
+          python3 scripts/build.py --check
+          python3 scripts/site_extras.py --check
+          python3 scripts/check_site.py
+
+      - name: Commit generated Pages files
+        shell: bash
+        run: |
+          if [[ -z "$(git status --porcelain -- docs)" ]]; then
+            echo "Generated site is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A docs
+          git commit -m "Build site from briefing data"
+          git push

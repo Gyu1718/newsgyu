@@ -1,0 +1,32 @@
+name: Validate site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Build a clean site in the runner
+        shell: bash
+        run: |
+          rm -rf docs/briefings docs/threads
+          python3 scripts/build.py
+          python3 scripts/site_extras.py
+
+      - name: Validate generated files and internal links
+        run: |
+          python3 scripts/build.py --check
+          python3 scripts/site_extras.py --check
+          python3 scripts/check_site.py

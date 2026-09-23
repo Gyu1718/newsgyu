@@ -2,10 +2,10 @@
 
 매일 아침 받는 브리핑을 날짜별로 보관하고, 여러 날에 걸친 사건을 사안별 계보로 묶는 정적 사이트입니다.
 
-- 사이트: https://gyu1718.github.io/newsforgyu/
-- 최신 판 고정 주소: https://gyu1718.github.io/newsforgyu/latest.html
-- 사건 계보: https://gyu1718.github.io/newsforgyu/threads/index.html
-- RSS: https://gyu1718.github.io/newsforgyu/rss.xml
+- 사이트: https://gyu1718.github.io/newsgyu/
+- 최신 판 고정 주소: https://gyu1718.github.io/newsgyu/latest.html
+- 사건 계보: https://gyu1718.github.io/newsgyu/threads/index.html
+- RSS: https://gyu1718.github.io/newsgyu/rss.xml
 - Pages 설정: **Deploy from a branch → main → /docs**
 - 실행 환경: Python 3.10 이상, 외부 패키지와 API 키 없이 동작합니다
 
